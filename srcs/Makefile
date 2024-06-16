@@ -1,19 +1,9 @@
-SRCS = srcs
 RM = rm -rf
-COMPOSE_FILE = $(SRCS)/docker-compose.yml
+COMPOSE_FILE = docker-compose.yml
 
 all:
-	@if [ ! -d $(DB_V) ]; then \
-		mkdir -p $(DB_V); \
-	else \
-		echo "Directory already exists."; \
-	fi
-	@if [ ! -d $(WWW_V) ]; then \
-		mkdir -p $(WWW_V); \
-	else \
-		echo "Directory already exists."; \
-	fi
 	@docker compose -f $(COMPOSE_FILE) build
+	@docker-compose run app django-admin startproject project .
 
 up:
 	@docker compose -f $(COMPOSE_FILE) up -d
