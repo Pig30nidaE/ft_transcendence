@@ -2,17 +2,17 @@ RM = rm -rf
 COMPOSE_FILE = docker-compose.yml
 
 all:
-	@docker compose -f $(COMPOSE_FILE) build
+	@docker-compose up --build
 	@docker-compose run app django-admin startproject project .
 
 up:
-	@docker compose -f $(COMPOSE_FILE) up -d
+	@docker-compose -f $(COMPOSE_FILE) up -d
 
 down:
-	@docker compose -f $(COMPOSE_FILE) down
+	@docker-compose -f $(COMPOSE_FILE) down
 
 logs:
-	@docker compose -f $(COMPOSE_FILE) logs
+	@docker-compose -f $(COMPOSE_FILE) logs
 
 clean:
 	@make down
